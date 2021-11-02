@@ -1,0 +1,8 @@
+/*Här skriver ni css*/
+.delete {
+  visibility: hidden;
+}
+
+li:hover > .delete {
+  visibility: visible;
+}
