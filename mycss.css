@@ -1,6 +1,72 @@
-/*Här skriver ni css*/
+body {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+#tasks {
+  background-color: lightblue;
+  border-radius: 10px;
+  padding: 5px 20px 20px 20px;
+  box-shadow: 2px 2px 20px grey;
+}
+
+h2 {
+  padding: 5px;
+  margin: 0;
+  text-align: center;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+li, input {
+  padding: 5px;
+  padding-left: 10px;
+  border: 1px solid black;
+  border-bottom: 0px;
+  font-size: 1.3rem;
+}
+
+li:last-child {
+  border-bottom: 1px solid black;
+}
+
+input {
+  background-color: transparent;
+  border-right: 0px;
+}
+
+#my-button {
+  border: 1px solid black;
+  border-bottom: 0px;
+  background-color: transparent;
+  display: inline-block;
+  padding: 5px;
+  font-size: 1.3rem;
+  margin-left: -5px;
+}
+
+button {
+  cursor: pointer;
+}
+
 .delete {
   visibility: hidden;
+  float: right;
+
+  background-color: transparent;
+  box-shadow: unset;
+  border: unset;
+  font-size: 1.2rem;
+  padding: 0px;
 }
 
 li:hover > .delete {

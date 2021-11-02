@@ -1,4 +1,3 @@
-/*Här skriver ni koden*/
 var taskBtn = document.getElementById("my-button");
 var taskInput = document.getElementById("task");
 var list = document.getElementById("list");
