@@ -6,6 +6,8 @@ body {
 
   min-height: 100vh;
   overflow: hidden;
+
+  background-color: beige;
 }
 
 #tasks {
@@ -31,12 +33,11 @@ li, input {
   padding: 5px;
   padding-left: 10px;
   border: 1px solid black;
-  border-bottom: 0px;
   font-size: 1.3rem;
 }
 
-li:last-child {
-  border-bottom: 1px solid black;
+li {
+  border-top: 0px;
 }
 
 input {
@@ -46,7 +47,6 @@ input {
 
 #my-button {
   border: 1px solid black;
-  border-bottom: 0px;
   background-color: transparent;
   display: inline-block;
   padding: 5px;

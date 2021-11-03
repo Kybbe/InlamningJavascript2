@@ -24,4 +24,6 @@ taskBtn.addEventListener("click", function() {
 function deleteFunction() {
   parent = this.parentElement;
   list.removeChild(parent)
-}
+};
+
+document.getElementById("form").addEventListener( "submit", function(event) { event.preventDefault(); } );
