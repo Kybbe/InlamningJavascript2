@@ -2,7 +2,7 @@ var taskBtn = document.getElementById("my-button");
 var taskInput = document.getElementById("task");
 var list = document.getElementById("list");
 var deletes = document.getElementsByClassName("delete");
-var ultimateDeleteBtn = document.getElementById("ultimateDelete")
+var deleteAllBtn = document.getElementById("ultimateDelete")
 
 function createTodo() {
   if(taskInput.value != ""){
@@ -20,23 +20,29 @@ function createTodo() {
     taskInput.value = "";
     taskInput.focus();
 
-    ultimateDeleteBtn.style.display = "inline-block";
+    deleteAllBtn.style.display = "inline-block";
+  } else {
+    alert("Please type something in the 'Write task' box first!")
   }
 }
 
 function deleteTodo() {
   parent = this.parentElement;
   list.removeChild(parent)
+
+  if(list.children.length == 0){
+    deleteAllBtn.style.display = "none";
+  }
 };
 
 
 function deleteAllTodo() {
   list.innerHTML = "";
 
-  ultimateDeleteBtn.style.display = "none";
+  deleteAllBtn.style.display = "none";
 }
 
 taskBtn.addEventListener("click", createTodo);
-ultimateDeleteBtn.addEventListener("click", deleteAllTodo);
+deleteAllBtn.addEventListener("click", deleteAllTodo);
 
 document.getElementsByTagName("form")[0].addEventListener( "submit", function(event) { event.preventDefault(); } );
