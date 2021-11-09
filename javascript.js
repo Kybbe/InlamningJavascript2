@@ -7,6 +7,12 @@ var deleteCheckedBtn = document.getElementById("clearCompleted");
 var todoCounter = document.getElementById("todoCounter");
 var buttonDiv = document.getElementById("buttons");
 
+taskBtn.addEventListener("click", createTodo);
+deleteAllBtn.addEventListener("click", deleteAllTodo);
+deleteCheckedBtn.addEventListener("click", deleteChecked)
+
+document.getElementsByTagName("form")[0].addEventListener( "submit", function(event) { event.preventDefault(); } );
+
 loadFromLocalStorage();
 
 function createTodo(name, checked) {
@@ -21,40 +27,34 @@ function createTodo(name, checked) {
   } else {
     return;
   }
-
+  
   if(checked) {
     li.className = "checked";
   }
-
+  
   li.addEventListener("click", checkTodo);
-
+  
   let btn = document.createElement("button");
   btn.appendChild(document.createTextNode("x"));
   btn.className = "delete";
   btn.addEventListener("click", deleteTodo);
-
+  
   li.appendChild(btn);
   list.appendChild(li);
-
-  buttonDiv.style.display = "inline-block";
-
+  
   saveAndCount();
 }
 
 function deleteTodo() {
   parent = this.parentElement;
   list.removeChild(parent)
-
-  if(list.children.length == 0){
-    buttonDiv.style.display = "none";
-  }
+  
   saveAndCount();
 };
 
 function deleteAllTodo() {
   list.innerHTML = "";
-
-  buttonDiv.style.display = "none";
+  
   saveAndCount();
 }
 
@@ -81,6 +81,12 @@ function checkTodo() {
 function counter() {
   let amountChecked = document.getElementsByClassName("checked").length;
   todoCounter.innerHTML = (list.children.length - amountChecked);
+  
+  if(list.children.length == 0){
+    buttonDiv.style.display = "none";
+  } else {
+    buttonDiv.style.display = "inline-block";
+  }
 }
 
 function saveToLocalStorage() {
@@ -109,10 +115,3 @@ function saveAndCount() {
   saveToLocalStorage();
   counter();
 }
-
-
-taskBtn.addEventListener("click", createTodo);
-deleteAllBtn.addEventListener("click", deleteAllTodo);
-deleteCheckedBtn.addEventListener("click", deleteChecked)
-
-document.getElementsByTagName("form")[0].addEventListener( "submit", function(event) { event.preventDefault(); } );
