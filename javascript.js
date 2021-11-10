@@ -115,3 +115,12 @@ function saveAndCount() {
   saveToLocalStorage();
   counter();
 }
+
+function changeTheme() {
+  let body = document.getElementsByTagName("body")[0];
+  if(body.className == "light") {
+    body.className = "dark";
+  } else {
+    body.className = "light";
+  }
+}

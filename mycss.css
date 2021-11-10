@@ -1,3 +1,17 @@
+.light {
+  --background: #ebebeb;
+  --color: #000;
+  --card-color: lightblue;
+  --darker-card-color: rgb(101, 198, 231);
+}
+
+.dark {
+  --background: rgb(22, 22, 22);
+  --color: #fff;
+  --card-color: rgb(125, 41, 223);
+  --darker-card-color: rgb(153, 96, 219);
+}
+
 body {
   display: flex;
   flex-wrap: wrap;
@@ -8,11 +22,11 @@ body {
   height: 100%;
   margin: 0;
 
-  background-color: beige;
+  background-color: var(--background);
 }
 
 #tasks {
-  background-color: lightblue;
+  background-color: var(--card-color);
   border-radius: 10px;
   padding: 5px 20px 20px 20px;
   box-shadow: 2px 2px 20px grey;
@@ -36,7 +50,7 @@ ul {
 li, input {
   padding: 5px;
   padding-left: 10px;
-  border: 1px solid black;
+  border: 1px solid var(--color);
   font-size: 1.3rem;
 }
 
@@ -61,12 +75,14 @@ input {
 }
 
 #my-button {
-  border: 1px solid black;
+  border: 1px solid var(--color);
   background-color: transparent;
   display: inline-block;
   padding: 5px;
   font-size: 1.3rem;
   margin-left: -4px;
+
+  transition: background-color 0.3s ease;
 }
 
 button {
@@ -93,22 +109,29 @@ li:hover > .delete {
   opacity: 0.5;
 }
 
-#buttons {
-  display: none;
+#buttons, #themeChangeContainer {
   position: fixed;
-
+  
   border-radius: 10px;
-  bottom: 20px;
   right: 20px;
   padding: 5px;
-
-  background-color: lightblue;
+  
+  background-color: var(--card-color);
 }
 
-#ultimateDelete, #clearCompleted{
+#buttons {
+  display: none;
+  bottom: 20px;
+}
+
+#themeChangeContainer {
+  top: 20px;
+}
+
+#ultimateDelete, #clearCompleted, #themeChange{
   display: block;
 
-  border: 1px solid black;
+  border: 1px solid var(--color);
   background-color: transparent;
   border-radius: 10px;
 
@@ -119,6 +142,6 @@ li:hover > .delete {
   transition: background-color 0.3s ease;
 }
 
-#ultimateDelete:hover, #clearCompleted:hover {
-  background-color: rgb(0, 140, 255);
+#ultimateDelete:hover, #clearCompleted:hover, #themeChange:hover, #my-button:hover {
+  background-color: var(--darker-card-color);
 }
