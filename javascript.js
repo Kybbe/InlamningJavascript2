@@ -32,6 +32,7 @@ function createTodo(name, checked) {
     li.className = "checked";
   }
   
+  li.addEventListener("dblclick", editTodo);
   li.addEventListener("click", checkTodo);
   
   let btn = document.createElement("button");
@@ -70,13 +71,37 @@ function deleteChecked() {
 }
 
 function checkTodo() {
-  if(this.className == "checked") {
-    this.className = "";
-  } else {
-    this.className = "checked"
+  if(this.firstChild.nodeType == 3) {
+    this.classList.toggle("checked");
   }
   saveAndCount();
 };
+
+function editTodo() {
+  if(this.firstChild.nodeType != 3) { return; }
+  
+  let text = this.firstChild.nodeValue;
+  let input = document.createElement("input");
+  input.type = "text";
+  input.value = text;
+  this.firstChild.nodeValue = "";
+  this.prepend(input);
+  input.focus();
+  input.addEventListener("mouseleave", function() { saveEdit(this) });
+  input.addEventListener("keypress", function(event) {
+    if(event.key == "Enter") {
+      saveEdit(this);
+    }
+  })
+};
+
+function saveEdit(inputObject) {  
+  let text = inputObject.value;
+  let parent = inputObject.parentElement;
+  let textNode = document.createTextNode(text);
+  parent.replaceChild(textNode, inputObject);
+  saveAndCount();
+}
 
 function counter() {
   let amountChecked = document.getElementsByClassName("checked").length;
@@ -84,8 +109,14 @@ function counter() {
   
   if(list.children.length == 0){
     buttonDiv.style.display = "none";
+
+    taskInput.style.borderRadius = "10px 0px 0px 10px";
+    taskBtn.style.borderRadius = "0px 10px 10px 0px";
   } else {
     buttonDiv.style.display = "inline-block";
+
+    taskInput.style.borderRadius = null;
+    taskBtn.style.borderRadius = null;
   }
 }
 
@@ -103,10 +134,46 @@ function saveToLocalStorage() {
 
 function loadFromLocalStorage() {
   let todoList = JSON.parse(localStorage.getItem("todoList"));
-  if(todoList != null) {
-    for(let i = 0; i < todoList.length; i++) {
-      createTodo(todoList[i].text, todoList[i].class);
-    }
+
+  if ( todoList.length == 0 || todoList == null ) {
+    todoList = [
+      {
+          "text": "Skinka 180g X2",
+          "class": ""
+      },
+      {
+          "text": "Matgrädde 2.5dl",
+          "class": ""
+      },
+      {
+          "text": "Mjölk RÖD",
+          "class": ""
+      },
+      {
+          "text": "Lagrad ost 1 paket",
+          "class": ""
+      },
+      {
+          "text": "Gul lök",
+          "class": "checked"
+      },
+      {
+          "text": "Smör 1 Klick",
+          "class": ""
+      },
+      {
+          "text": "Pasta halvt paket ungefär",
+          "class": ""
+      },
+      {
+          "text": "Detta är ett EXEMPEL (recept till ost och skinksås finns på ica.se) :)",
+          "class": ""
+      }
+    ]
+  }
+
+  for(let i = 0; i < todoList.length; i++) {
+    createTodo(todoList[i].text, todoList[i].class);
   }
   counter()
 }

@@ -21,13 +21,34 @@
       <ul id="list"></ul>
     </div>
 
+    <div id="instructions">
+      <button onclick=" document.getElementById('instructions').style.display = 'none'; ">x</button>
+      <h2>Instructions</h2>
+      <p>
+        This is a to-do-list. You can <span>add</span> tasks by writing them in the textbox on the right and pressing the "Add task" button.
+      </p>
+      <p>
+        You can <span>remove</span> tasks by clicking on the X button at the right of the task text.
+      </p>
+      <p>
+        You can <span>check off</span> tasks by clicking on the task,
+        or <span>uncheck</span> them by clicking them again.
+      </p>
+      <p>
+        You can also <span>edit</span> tasks by double clicking on them.
+      </p>
+      <p>
+        The number of <span>tasks left</span> is shown in the headline.
+      </p>
+    </div>
+    
+    <div id="themeChangeContainer">
+      <button id="themeChange" onclick="changeTheme()">Theme</button>
+    </div>
+
     <div id="buttons">
       <button id="ultimateDelete">Delete all tasks</button>
       <button id="clearCompleted">Clear all completed tasks</button>
-    </div>
-
-    <div id="themeChangeContainer">
-      <button id="themeChange" onclick="changeTheme()">Theme</button>
     </div>
     
     <script defer type="text/javascript" src="javascript.js"></script>

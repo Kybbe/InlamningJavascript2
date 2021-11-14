@@ -12,6 +12,10 @@
   --darker-card-color: rgb(153, 96, 219);
 }
 
+* {
+  transition: background-color 0.3s ease;
+}
+
 body {
   display: flex;
   flex-wrap: wrap;
@@ -23,6 +27,7 @@ body {
   margin: 0;
 
   background-color: var(--background);
+  color: var(--color);
 }
 
 #tasks {
@@ -61,17 +66,29 @@ li {
   opacity: 1;
   transition: opacity 0.3s ease;
 
-  max-width: 345px;
+  max-width: 344px;
   word-break: break-word;
+
+  position: relative;
 }
 
 li:hover {
   opacity: 0.8;
 }
 
-input {
+li:last-of-type {
+  border-radius: 0px 0px 10px 10px;
+}
+
+li:nth-child(2n) {
+  background-color: var(--darker-card-color);
+}
+
+form > input {
   background-color: transparent;
   border-right: 0px;
+
+  border-radius: 10px 0px 0px 0px;
 }
 
 #my-button {
@@ -81,23 +98,32 @@ input {
   padding: 5px;
   font-size: 1.3rem;
   margin-left: -4px;
-
+  border-radius: 0px 10px 0px 0px;
+  
   transition: background-color 0.3s ease;
 }
 
 button {
   cursor: pointer;
+
+  color: inherit;
 }
 
 .delete {
   visibility: hidden;
   float: right;
 
-  background-color: transparent;
+  background-color: var(--background);
   box-shadow: unset;
-  border: unset;
+  border: 1px solid var(--color);
+  border-radius: 50%;
   font-size: 1.2rem;
-  padding: 0px;
+  padding: 0px 5px;
+
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 li:hover > .delete {
@@ -144,4 +170,36 @@ li:hover > .delete {
 
 #ultimateDelete:hover, #clearCompleted:hover, #themeChange:hover, #my-button:hover {
   background-color: var(--darker-card-color);
+}
+
+#instructions {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 10px;
+  background-color: var(--card-color);
+  border-radius: 10px;
+
+  width: 25%;
+}
+
+#instructions span {
+  font-weight: bold;
+}
+
+#instructions button {
+  float: right;
+
+  background-color: var(--background);
+  box-shadow: unset;
+  border: 1px solid var(--color);
+  border-radius: 50%;
+  font-size: 1.2rem;
+  padding: 0px 5px;
+}
+
+@media (max-width: 1000px) {
+  #instructions {
+    display: none;
+  }
 }
