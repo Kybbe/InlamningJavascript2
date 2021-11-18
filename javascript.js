@@ -135,43 +135,6 @@ function saveToLocalStorage() {
 function loadFromLocalStorage() {
   let todoList = JSON.parse(localStorage.getItem("todoList"));
 
-  if ( todoList.length == 0 || todoList == null ) {
-    todoList = [
-      {
-          "text": "Skinka 180g X2",
-          "class": ""
-      },
-      {
-          "text": "Matgrädde 2.5dl",
-          "class": ""
-      },
-      {
-          "text": "Mjölk RÖD",
-          "class": ""
-      },
-      {
-          "text": "Lagrad ost 1 paket",
-          "class": ""
-      },
-      {
-          "text": "Gul lök",
-          "class": "checked"
-      },
-      {
-          "text": "Smör 1 Klick",
-          "class": ""
-      },
-      {
-          "text": "Pasta halvt paket ungefär",
-          "class": ""
-      },
-      {
-          "text": "Detta är ett EXEMPEL (recept till ost och skinksås finns på ica.se) :)",
-          "class": ""
-      }
-    ]
-  }
-
   for(let i = 0; i < todoList.length; i++) {
     createTodo(todoList[i].text, todoList[i].class);
   }
